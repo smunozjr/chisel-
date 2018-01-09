@@ -40,19 +40,15 @@ class Chisel
   def emphasis(string)
     a = string.split
     b =  a.map do |word|
-      # binding.pry
       if word[0..1] == "**"
-        # binding.pry
         word.sub("**", "<strong>")
       elsif word[-2..-1] == "**"
         word.sub("**", "</strong>")
       elsif word[0] == "*" && word.length > 1
          word.sub("*", "<em>")
       elsif word[-1] == "*"
-        # binding.pry
         word.sub("*", "</em>")
       else
-        # binding.pry
         word
       end
     end
