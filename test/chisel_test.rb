@@ -37,27 +37,40 @@ class ChiselTest <Minitest::Test
 
     def test_for_hashtags
       chisel = Chisel.new
-      result = chisel.for_hashtags("## Here's an H2")
+      result = chisel.header_tags("## Here's an H2")
 
       assert_equal "<h2>Here's an H2</h2>", result
     end
 
     def test_header_and_paragraph
-      skip
       chisel = Chisel.new
-      result = chisel.header_and_paragraph("# Header\n
-      followed by text")
-
-      assert_equal "<h1>Header</h1>\n <p>followed by text</p>", result
+      result = chisel.header_and_paragraph("# Header\nfollowed by text")
+      # binding.pry
+      assert_equal "<h1>Header</h1>\n<p>followed by text</p>", result
     end
 
     def test_for_more_hashtags
-      skip
       chisel = Chisel.new
-      result = chisel.for_hashtags("## Header 1\n## Header 2")
+      result = chisel.header_and_paragraph("## Header1\n## Header 2")
 
-      assert_equal "<h2>Header 1</h2>\n<h2>Header 2</h2>", result
+      assert_equal "<h2>Header1</h2>\n<h2>Header 2</h2>", result
     end
+
+    def test_for_emphasis
+      chisel = Chisel.new
+      result = chisel.emphasis("My *emphasized text* is awesome.")
+
+      assert_equal "My <em>emphasized text</em> is awesome.", result
+
+    end
+
+    def test_for_strong
+      chisel = Chisel.new
+      result = chisel.emphasis("My **strong text** is awesome.")
+
+      assert_equal "My <strong>strong text</strong> is awesome.", result
+    end
+
 
 
 

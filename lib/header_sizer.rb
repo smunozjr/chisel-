@@ -1,7 +1,7 @@
-class HtmlTags
+class HeaderSizer
 
- def html_tags
-   html_hash = {
+ def sizes
+   sizes = {
     '#' => 'h1',
     '##' => 'h2',
     '###' => 'h3',
